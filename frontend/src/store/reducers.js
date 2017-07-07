@@ -12,17 +12,23 @@ export const user = (state = {}, action) => {
     }
 };
 
-export const users = (state = [], action) => {
+export const users = (state = {isFetching: false, didInvalidate: false, items:[]}, action) => {
     switch (action.type) {
         case C.ADD_USER:
-            return [
-                ...state,
+            return {isFetching: false, didInvalidate: false, items:[
+                ...state.items,
                 user({}, action)
-            ];
+            ]};
         case C.REMOVE_USER:
-            return state.filter(
+            return {isFetching: false, didInvalidate: false, items: state.items.filter(
                     u => u.username !== action.username
-                );
+                )};
+        case C.INVALIDATE_USERS:
+            return {isFetching: false, didInvalidate: true, items: state.items};
+        case C.REQUEST_USERS:
+            return {isFetching: true, didInvalidate: false, items: []};
+        case C.RECEIVE_USERS:
+            return {isFetching: false, didInvalidate: false, items: action.users};
         default:
             return state;
     }

@@ -1,5 +1,8 @@
 {
-  "users": [
+  "users": {
+    "isFetching": false,
+    "didInvalidate": false,
+  "items":[
     {
       "username": "heavylion224",
       "fullName": "evelyn davies"
@@ -41,4 +44,5 @@
       "fullName": "rebecca beck"
     }
   ]
+  }
 }

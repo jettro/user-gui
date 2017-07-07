@@ -9,7 +9,8 @@ const UsersList = ({
                        onCreate = f => f,
                        onMarkCurrent = f => f,
                        onShowCreate = f => f,
-                       onCancelCreate = f => f
+                       onCancelCreate = f => f,
+                       onRefresh = f => f
                    }) => (
     <div className="users">
         <NewUserForm showForm={showCreate} onNewUser={onCreate} onCancelCreate={onCancelCreate}/>
@@ -22,12 +23,13 @@ const UsersList = ({
                 <th>Full name</th>
                 <th>
                     <button onClick={onShowCreate}>Create</button>
+                    <button onClick={onRefresh}>Refresh</button>
                 </th>
             </tr>
             </thead>
             <tbody>
             {
-                users.map((user, i) =>
+                users.items.map((user, i) =>
                     <User key={i} {...user}
                           onRemove={() => onRemove(user.username)}
                           onMarkCurrent={() => onMarkCurrent(user.username)}

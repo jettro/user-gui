@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {addUser, fetchUsers, markCurrentUser, removeUser, showCreateUserForm} from "./actions";
+import {addUser, fetchUsers, markCurrentUser, removeUser, showCreateUserForm, storeNewUser} from "./actions";
 import UsersList from "./users/UsersList";
 
 export const Users = connect (
@@ -15,7 +15,7 @@ export const Users = connect (
                 dispatch(removeUser(username))
             },
             onCreate(username,fullName) {
-                dispatch(addUser(username, fullName));
+                dispatch(storeNewUser(username, fullName));
                 dispatch(showCreateUserForm("false"));
                 dispatch(markCurrentUser(username));
             },

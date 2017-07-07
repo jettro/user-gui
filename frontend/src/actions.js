@@ -43,6 +43,22 @@ export const requestUsers = () =>
         type: C.REQUEST_USERS
     });
 
+export function storeNewUser(username, fullName) {
+    return function(dispatch) {
+        return fetch('http://localhost:8080/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"username": username, "fullName": fullName})
+        })
+            .then(response => response.json(),
+                error => console.log('An error occurred.', error)
+            )
+            .then(json => dispatch(addUser(username, fullName)));
+    }
+}
+
 export function fetchUsers() {
     return function(dispatch) {
         dispatch(requestUsers());

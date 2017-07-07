@@ -18,7 +18,7 @@ public class JwtAuthotizationServerConfigurer extends ResourceServerConfigurerAd
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/users").permitAll()
+                .antMatchers("/users**").permitAll()
                 .antMatchers("/**").authenticated();
     }
 }

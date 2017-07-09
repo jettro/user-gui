@@ -1,5 +1,8 @@
 import {connect} from "react-redux";
-import {addUser, fetchUsers, markCurrentUser, removeUser, showCreateUserForm, storeNewUser} from "./actions";
+import {
+    fetchUsers, hideRemoveUserModal, markCurrentUser, removeUser, showCreateUserForm, showRemoveUserModal,
+    storeNewUser
+} from "./actions";
 import UsersList from "./users/UsersList";
 
 export const Users = connect (
@@ -7,12 +10,14 @@ export const Users = connect (
         ({
             users: state.users,
             currentUser: state.currentUser,
-            showCreate: state.showCreate
+            removeUser: state.removeUser,
+            showCreate: state.showCreate,
+            showRemoveUserModal: state.showRemoveUserModal
         }),
     dispatch =>
         ({
             onRemove(username) {
-                dispatch(removeUser(username))
+                dispatch(showRemoveUserModal(username))
             },
             onCreate(username,fullName) {
                 dispatch(storeNewUser(username, fullName));
@@ -30,7 +35,13 @@ export const Users = connect (
             },
             onRefresh() {
                 dispatch(fetchUsers())
+            },
+            onConfirmRemove(username) {
+                dispatch(removeUser(username));
+                dispatch(hideRemoveUserModal());
+            },
+            onCancelRemove() {
+                dispatch(hideRemoveUserModal());
             }
         })
 )(UsersList);
-

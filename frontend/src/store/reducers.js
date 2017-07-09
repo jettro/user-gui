@@ -51,3 +51,15 @@ export const showCreate = (state = "", action) => {
             return state;
     }
 };
+
+const initialModalState = {showModal: "false", username: ""};
+export const showRemoveUserModal = (state = initialModalState, action) => {
+    switch (action.type) {
+        case C.SHOW_REMOVE_USER_MODAL:
+            return {showModal:"true", username: action.username};
+        case C.HIDE_REMOVE_USER_MODAL:
+            return {showModal:"false", username: ""};
+        default:
+            return state;
+    }
+};

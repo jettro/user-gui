@@ -69,3 +69,12 @@ export function fetchUsers() {
             .then(json => dispatch(receiveUsers(json)));
     }
 }
+
+export const showRemoveUserModal = (username) => ({
+    type: C.SHOW_REMOVE_USER_MODAL,
+    username
+});
+
+export const hideRemoveUserModal = () => ({
+    type: C.HIDE_REMOVE_USER_MODAL
+});

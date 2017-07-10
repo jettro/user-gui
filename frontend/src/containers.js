@@ -10,7 +10,7 @@ export const Users = connect (
         ({
             users: state.users,
             currentUser: state.currentUser,
-            removeUser: state.removeUser,
+            userToRemove: state.userToRemove,
             showCreate: state.showCreate,
             showRemoveUserModal: state.showRemoveUserModal
         }),
@@ -37,6 +37,7 @@ export const Users = connect (
                 dispatch(fetchUsers())
             },
             onConfirmRemove(username) {
+                console.log("Username: " + username.username);
                 dispatch(removeUser(username));
                 dispatch(hideRemoveUserModal());
             },
